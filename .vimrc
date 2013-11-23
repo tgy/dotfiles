@@ -23,7 +23,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 " Syntax highlight and color schemes
 syntax enable
 set background=dark
-colorscheme solarized
+colorscheme base16-ocean
 
 " Allows to change buffer without saving
 set hidden
