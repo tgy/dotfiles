@@ -1,7 +1,46 @@
 " Loading pathogen plugins
-call pathogen#infect()
+" call pathogen#infect()
 
-" Enable indentation
+
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/vundle'
+
+
+" Plugins
+" Bundle 'Valloric/YouCompleteMe'
+Bundle 'scrooloose/nerdtree'
+Bundle 'kien/ctrlp.vim'
+Bundle 'scrooloose/syntastic'
+Bundle 'jeroenbourgois/vim-actionscript'
+Bundle 'tpope/vim-surround'
+Bundle 'bling/vim-airline'
+Bundle 'tpope/vim-fugitive'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'Raimondi/delimitMate'
+Bundle 'Shougo/neocomplete.vim'
+Bundle 'SirVer/ultisnips'
+Bundle 'honza/vim-snippets'
+Bundle 'jlanzarotta/bufexplorer'
+Bundle 'rking/ag.vim'
+
+" UltiSnips
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsEditSplit="vertical"
+
+" Neocomplete
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#enable_auto_select = 1
+
 filetype plugin indent on
 
 " Changing <Leader>
@@ -23,7 +62,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 " Syntax highlight and color schemes
 syntax enable
 set background=dark
-colorscheme base16-ocean
+colorscheme jellybeans
 
 " Allows to change buffer without saving
 set hidden
@@ -47,12 +86,12 @@ set showbreak=↪
 
 set nu
 
-set colorcolumn=80
+set colorcolumn=79
 
 " Tabbing related
-set tabstop=2
-set shiftwidth=2
-set sts=2
+set tabstop=4
+set shiftwidth=4
+set sts=4
 set et
 set smartindent
 set cindent
@@ -89,3 +128,30 @@ set laststatus=2 " Always display the statusline in all windows
 "set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 
 set cursorline
+
+set scrolloff=5
+
+noremap <leader>pp :setlocal paste!<cr>
+
+set wrap
+set textwidth=79
+
+hi MatchParen cterm=underline ctermbg=green ctermfg=magenta
+
+" Python & Django
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+
+
+" put ft=markdown for all .md files
+au BufRead,BufNewFile *.md set filetype=markdown
+
+" Git commit
+autocmd Filetype gitcommit setlocal spell textwidth=72
+
+" Syntastic
+let g:syntastic_cpp_compiler_options = '-std=c++11'
+let g:syntastic_cpp_check_header = 1
+let g:syntastic_c_auto_refresh_includes = 1
