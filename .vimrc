@@ -40,22 +40,31 @@ Bundle 'jlanzarotta/bufexplorer'
 Bundle 'rking/ag.vim'
 " <Leader><Leader>w to easily jump to some part of the visible code
 Bundle 'Lokaltog/vim-easymotion'
-" Allows to switch between .h and .cpp
-Bundle "derekwyatt/vim-fswitch"
-" Autocomplete C/C++ with a clang compiler
-Bundle 'Rip-Rip/clang_complete'
-" A bunch of modules that interact with each other to optimize clang_complete
-Bundle 'LucHermitte/vim-clang'
-Bundle 'LucHermitte/clang_indexer'
+" Align stuff
+Bundle 'junegunn/vim-easy-align'
+" Solarized theme, easy to the eye :)
+Bundle 'altercation/vim-colors-solarized'
+" Base-16 colorschemes, super cool
+Bundle 'chriskempson/base16-vim'
 " Colorful {} [] :: -> etc. Very useful to see the code more clearly
-" Bundle 'oblitum/rainbow'
-
-" Disabled plugins
-
+Bundle 'oblitum/rainbow'
 " Add gvim color support to vim (in terminal)
 " Bundle 'vim-scripts/colorsupport.vim'
 " Nice white theme GitHub inspired
 " Bundle 'ricardovaleriano/vim-github-theme'
+" Completion with cache
+Bundle 'Shougo/neocomplete'
+Bundle 'Shougo/neosnippet'
+Bundle 'Shougo/neosnippet-snippets'
+
+" C/C++ specific
+" Allows to switch between .h and .cpp
+" Bundle "derekwyatt/vim-fswitch"
+" Autocomplete C/C++ with a clang compiler
+" Bundle 'Rip-Rip/clang_complete'
+" A bunch of modules that interact with each other to optimize clang_complete
+" Bundle 'LucHermitte/vim-clang'
+" Bundle 'LucHermitte/clang_indexer'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -69,7 +78,7 @@ filetype plugin indent on
 " Syntax highlight and color schemes
 syntax enable
 set background=dark
-colorscheme jellybeans
+colorscheme solarized
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -86,6 +95,8 @@ nnoremap Q <nop>
 nnoremap ; :
 " Toggle showing the invisible characters
 nmap <leader>l :set list!<CR>
+" Showing them by default
+"set list!
 " Move text and rehighlight -- vim tip_id=224
 " vnoremap > ><CR>gv
 " vnoremap < <<CR>gv 
@@ -99,6 +110,19 @@ noremap <leader>pp :setlocal paste!<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " PLUGINS SPECIFIC
+
+" Neocomplete
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+" AutoComplPop like behavior.
+let g:neocomplete#enable_auto_select = 1
 
 " Ctrlp
 let g:ctrlp_custom_ignore = '\.o$\|\.app$'
@@ -133,22 +157,25 @@ let g:syntastic_c_auto_refresh_includes = 1
 let g:syntastic_cpp_include_dirs = ['src']
 let g:syntastic_cpp_compiler_options = '-std=c++11'
 
-
 " Completion plugins
-set completeopt-=preview
-let g:clang_auto_select = 1
-let g:clang_snippets = 1
-let g:clang_conceal_snippets = 1
-let g:clang_snippets_engine = "clang_complete"
-let g:clang_user_options = "-std=c++11"
-let g:clang_use_library = 1
-set conceallevel=2
-set concealcursor=vin
-let g:tex_conceal=0
-let g:SuperTabDefaultCompletionType='<c-x><c-u><c-p>'
+"set completeopt-=preview
+"let g:clang_auto_select = 1
+"let g:clang_snippets = 1
+"let g:clang_conceal_snippets = 1
+"let g:clang_snippets_engine = "clang_complete"
+"let g:clang_user_options = "-std=c++11"
+"let g:clang_use_library = 1
+"set conceallevel=2
+"set concealcursor=vin
+"let g:tex_conceal=0
+"let g:SuperTabDefaultCompletionType='<c-x><c-u><c-p>'
 
 " Enable rainbow style parenthesis
 let g:rainbow_active = 1
+
+" Easy Align
+vmap <Enter> <Plug>(EasyAlign)
+nmap <Leader>a <Plug>(EasyAlign)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -175,8 +202,8 @@ set confirm
 set showbreak=↪
 " Show line numbers
 set nu
-" To prevent going further than 79th column
-set colorcolumn=79
+" To prevent going further than 80th column
+set colorcolumn=80
 " Tabbing related
 set tabstop=4
 set shiftwidth=4
