@@ -92,7 +92,6 @@ alias systemctl="sudo systemctl"
 alias pacman="sudo pacman"
 
 # DOTFILES
-alias xresources
 alias i3config="vim ~/.i3/config"
 alias xresources="vim ~/.Xresources && xrdb ~/.Xresources"
 alias dvorak="setxkbmap us -variant dvorak-alt-intl"
@@ -218,5 +217,8 @@ alias ccat="pygmentize -g"
 # Java specific
 
 # Better font rendering
-export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd'
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
 export IDEA_JDK='/opt/java7/'
+
+# Viciplace & Symfony 2
+alias vpvm='vboxmanage startvm vmubuntu --type headless'
