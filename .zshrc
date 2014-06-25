@@ -37,7 +37,7 @@ ZSH_THEME="dpoggi"
 # much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# Uncomment following line if you want to  shown in the command execution time stamp 
+# Uncomment following line if you want to  shown in the command execution time stamp
 # in the history command output. The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|
 # yyyy-mm-dd
 # HIST_STAMPS="mm/dd/yyyy"
@@ -52,6 +52,7 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/toogy/apps/todo:/home/toogy/apps/pycharm/bin:/home/toogy/apps/phpstorm/bin:/home/toogy/apps/sublime_text_3"
+export PATH=$PATH:"/home/toogy/.gem/ruby/2.1.0/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # # Preferred editor for local and remote sessions
@@ -94,9 +95,13 @@ alias pacman="sudo pacman"
 # DOTFILES
 alias i3config="vim ~/.i3/config"
 alias xresources="vim ~/.Xresources && xrdb ~/.Xresources"
+alias zshrc="vim ~/.zshrc"
+
+# Keyboards
 alias dvorak="setxkbmap us -variant dvorak-alt-intl"
 alias fr="setxkbmap fr"
 alias us="setxkbmap us"
+
 alias cp="/usr/bin/gcp -rf"
 alias rename="perl-rename"
 alias g="git"
@@ -132,8 +137,7 @@ alias wifepita="sudo netctl start epita && jog"
 
 alias m="make"
 alias mc="make clean"
-alias r="make run"
-alias mr="m && r"
+alias mr="m && make run"
 
 # DEBUG
 alias leak="valgrind -v --leak-check=full"
@@ -156,7 +160,7 @@ cd $(cat ~/.currentpwd)
 
 # FUNCTIONS ->
 clipin () {
-    xclip -o >> $1
+    clip -o >> $1
 }
 
 # UNTAR
@@ -222,3 +226,14 @@ export IDEA_JDK='/opt/java7/'
 
 # Viciplace & Symfony 2
 alias vpvm='vboxmanage startvm vmubuntu --type headless'
+
+
+# Django & Python
+export WORKON_HOME='~/.virtualenvs'
+source /usr/bin/virtualenvwrapper.sh
+
+function torrents() {
+  sshfs tgy:/home/torrents /mnt/torrents;
+  cd /mnt/torrents;
+}
+

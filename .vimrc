@@ -66,6 +66,10 @@ Bundle 'chriskempson/base16-vim'
 " Bundle 'ricardovaleriano/vim-github-theme'
 
 
+" YAML support
+Bundle 'chase/vim-ansible-yaml'
+Bundle 'ingydotnet/yaml-vim'
+
 " Neocomplete Completion with cache (useless if you have YouCompleteMe)
 "Bundle 'Shougo/neocomplete'
 "Bundle 'Shougo/neosnippet'
@@ -88,6 +92,9 @@ Bundle 'hail2u/vim-css3-syntax'
 " A bunch of modules that interact with each other to optimize clang_complete
 " Bundle 'LucHermitte/vim-clang'
 " Bundle 'LucHermitte/clang_indexer'
+
+" Python & Ddjango specific
+"Bundle 'jmcantrell/vim-virtualenv'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -296,6 +303,7 @@ autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 " put ft=markdown for all .md files
 au BufRead,BufNewFile *.md set filetype=markdown
+Bundle 'lambdalisue/vim-django-support'
 
 " Fixing 'font' keyword highlighted in red in CSS files
 augroup VimCSS3Syntax
@@ -308,4 +316,6 @@ autocmd BufNewFile,BufRead *.py let g:syntastic_quiet_messages = { "level": "war
 
 " Remove unwanted spaces when saving
 autocmd BufWritePre * :%s/\s\+$//e
+
+let g:ycm_semantic_triggers = { 'php' : ['->', '::'] }
 
