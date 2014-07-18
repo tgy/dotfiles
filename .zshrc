@@ -125,7 +125,10 @@ alias cdp="cd ~/p"
 # DJANGO
 alias pd="python manage.py"
 alias rs="./runserver"
-alias src="source ../bin/activate"
+
+# Python venv
+export WORKON_HOME='~/.virtualenvs'
+source /usr/bin/virtualenvwrapper.sh
 
 alias uzip="unzip"
 
@@ -227,13 +230,12 @@ export IDEA_JDK='/opt/java7/'
 # Viciplace & Symfony 2
 alias vpvm='vboxmanage startvm vmubuntu --type headless'
 
-
-# Django & Python
-export WORKON_HOME='~/.virtualenvs'
-source /usr/bin/virtualenvwrapper.sh
-
-function torrents() {
+function mounttorrents() {
   sshfs tgy:/home/torrents /mnt/torrents;
   cd /mnt/torrents;
 }
 
+
+function count-files() {
+  ls -l $1 | wc -l
+}

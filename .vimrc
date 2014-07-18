@@ -27,7 +27,7 @@ Bundle 'scrooloose/nerdtree'
 " Essential plugin to open files very quickly
 Bundle 'kien/ctrlp.vim'
 " Compile C/C++ when saving, avoid useless compilations
-Bundle 'scrooloose/syntastic'
+"Bundle 'scrooloose/syntastic'
 " Actionscript syntax highlight support
 Bundle 'jeroenbourgois/vim-actionscript'
 " Easily surround text with 'whatever you want'
@@ -58,6 +58,8 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'w0ng/vim-hybrid'
 " Base-16 colorschemes, super cool
 Bundle 'chriskempson/base16-vim'
+" Many color schemes
+Bundle 'flazz/vim-colorschemes'
 " Colorful {} [] :: -> etc. Very useful to see the code more clearly
 "Bundle 'oblitum/rainbow'
 " Add gvim color support to vim (in terminal)
