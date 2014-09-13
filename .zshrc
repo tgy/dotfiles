@@ -87,11 +87,6 @@ export PATH=$PATH:"/home/toogy/apps/sublime_text_3"
 
 # >>>>> ALIASES
 
-alias systemctl="sudo systemctl"
-
-# PACMAN
-alias pacman="sudo pacman"
-
 # DOTFILES
 alias i3config="vim ~/.i3/config"
 alias xresources="vim ~/.Xresources && xrdb ~/.Xresources"
@@ -108,8 +103,7 @@ alias g="git"
 alias vi="vim"
 alias v="vim"
 alias svi="sudoedit"
-alias pacman="sudo pacman"
-alias ls="ls -lah --color=auto"
+alias ls="ls++ -lah --color=auto"
 alias lst="ls -tr"
 alias l="ls"
 alias clip="xclip -sel clip"
@@ -134,7 +128,6 @@ alias uzip="unzip"
 
 # NETWORK
 alias jog="perl ~/jogsoul.pl ~/jogsoul.conf"
-alias wifepita="sudo netctl start epita && jog"
 
 # Compilation
 
@@ -239,3 +232,8 @@ function mounttorrents() {
 function count-files() {
   ls -l $1 | wc -l
 }
+
+setopt menu_complete
+
+# SLRN
+export NNTPSERVER=news.epita.fr

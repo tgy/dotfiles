@@ -67,6 +67,8 @@ Bundle 'flazz/vim-colorschemes'
 " Nice white theme GitHub inspired
 " Bundle 'ricardovaleriano/vim-github-theme'
 
+" Visually select increasingly larger regions of text
+Bundle 'terryma/vim-expand-region'
 
 " YAML support
 Bundle 'chase/vim-ansible-yaml'
@@ -211,6 +213,8 @@ let g:syntastic_cpp_check_header = 1
 let g:syntastic_c_auto_refresh_includes = 1
 let g:syntastic_cpp_include_dirs = ['src']
 let g:syntastic_cpp_compiler_options = '-std=c++11'
+let g:syntastic_python_checkers = ['pylint']
+let g:syntastic_python_pylint_args='--load-plugins pylint_django'
 
 " Completion plugins
 set completeopt-=preview
@@ -290,7 +294,7 @@ set cursorline
 set scrolloff=5
 " Wrap text to avoid going further than 80 characters
 set wrap
-set textwidth=80
+set textwidth=79
 " Enable folding for C/C++
 " autocmd FileType c setlocal foldmethod=syntax
 " autocmd FileType cpp setlocal foldmethod=syntax
@@ -317,7 +321,7 @@ augroup END
 autocmd BufNewFile,BufRead *.py let g:syntastic_quiet_messages = { "level": "warnings" }
 
 " Remove unwanted spaces when saving
-autocmd BufWritePre * :%s/\s\+$//e
+autocmd BufWritePre * if &ft != 'mail' | :%s/\s\+$//e | endif
 
 let g:ycm_semantic_triggers = { 'php' : ['->', '::'] }
 
