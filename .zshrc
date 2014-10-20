@@ -7,35 +7,14 @@ ZSH=$HOME/.oh-my-zsh
 # time that oh-my-zsh is loaded.
 ZSH_THEME="dpoggi"
 
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
 # Set to this to use case-sensitive completion
-# CASE_SENSITIVE="true"
-
-# Uncomment this to disable bi-weekly auto-update checks
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment to change how often before auto-updates occur? (in days)
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment following line if you want to disable colors in ls
-# DISABLE_LS_COLORS="true"
+CASE_SENSITIVE="true"
 
 # Uncomment following line if you want to disable autosetting terminal title.
 # DISABLE_AUTO_TITLE="true"
 
-# Uncomment following line if you want to disable command autocorrection
-# DISABLE_CORRECTION="true"
-
 # Uncomment following line if you want red dots to be displayed while waiting for completion
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment following line if you want to disable marking untracked files under
-# VCS as dirty. This makes repository status check for large repositories much,
-# much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment following line if you want to  shown in the command execution time stamp
 # in the history command output. The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|
@@ -51,23 +30,14 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/toogy/apps/todo:/home/toogy/apps/pycharm/bin:/home/toogy/apps/phpstorm/bin:/home/toogy/apps/sublime_text_3"
-export PATH=$PATH:"/home/toogy/.gem/ruby/2.1.0/bin"
-# export MANPATH="/usr/local/man:$MANPATH"
+export PATH=/home/toogy/bin:/usr/local/bin:$PATH
+export PATH=/home/toogy/.gem/ruby/2.1.0/bin:$PATH
+export PATH=/home/toogy/asm/scripts:$PATH
 
-# # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+export EDITOR='vim'
 
 # Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-#
+export ARCHFLAGS="-arch x86_64"
 
 #bindkey -v
 
@@ -81,10 +51,6 @@ promptinit
 
 export beep="beep -f 5000 -l 30 -r 2"
 
-# PATH
-export PATH=$PATH:"/home/toogy/apps/todo"
-export PATH=$PATH:"/home/toogy/apps/sublime_text_3"
-
 # >>>>> ALIASES
 
 # DOTFILES
@@ -93,7 +59,7 @@ alias xresources="vim ~/.Xresources && xrdb ~/.Xresources"
 alias zshrc="vim ~/.zshrc"
 
 # Keyboards
-alias dvorak="setxkbmap us -variant dvorak-alt-intl"
+alias dvorak="setxkbmap us -variant dvorak-alt-intl -option caps:escape"
 alias fr="setxkbmap fr"
 alias us="setxkbmap us"
 
@@ -103,7 +69,7 @@ alias g="git"
 alias vi="vim"
 alias v="vim"
 alias svi="sudoedit"
-alias ls="ls++ -lah --color=auto"
+alias ls="ls -lah --color=auto"
 alias lst="ls -tr"
 alias l="ls"
 alias clip="xclip -sel clip"
@@ -136,7 +102,7 @@ alias mc="make clean"
 alias mr="m && make run"
 
 # DEBUG
-alias leak="valgrind -v --leak-check=full"
+alias leak="valgrind --leak-check=full"
 
 function c ()
 {
@@ -189,13 +155,6 @@ uvga () {
     xrandr --output LVDS1 --auto
 }
 
-export TODOTXT_DEFAULT_ACTION=ls
-export TODOTXT_SORT_COMMAND='env LC_COLLATE=C sort -k 2,2 -k 1,1n'
-alias t='todo.sh'
-
-# COMPLETIONS
-source ~/.bash/completion/todo
-
 # for tmux: export 256color
 [ -n "$TMUX" ] && export TERM=screen-256color
 
@@ -203,13 +162,6 @@ source ~/.bash/completion/todo
 function ssht() {
   ssh $* -t 'export TERM=screen-256color; tmux -u a || tmux -u || /bin/bash'
 }
-
-TGY="37.59.62.110"
-
-alias tgy="ssht toogy@$TGY"
-alias irc="ssht irc@$TGY"
-alias torrent="ssht torrent@$TGY"
-
 
 alias ln="ln -v"
 alias ccat="pygmentize -g"
@@ -237,3 +189,16 @@ setopt menu_complete
 
 # SLRN
 export NNTPSERVER=news.epita.fr
+
+function Ч ()
+{
+  dvorak
+}
+
+# stderred
+if [ -f "/usr/lib/libstderred.so" ]; then
+  export LD_PRELOAD="/usr/lib/libstderred.so"
+fi
+
+export PAGER=most
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

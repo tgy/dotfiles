@@ -3,7 +3,7 @@ filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/vundle'
@@ -13,97 +13,98 @@ Plugin 'gmarik/vundle'
 " Plugins
 
 " Very powerful completion
-Bundle 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
 " Ctags..
-Bundle 'fishman/ctags'
+Plugin 'fishman/ctags'
 " Ctags bar
-Bundle 'majutsushi/tagbar'
+Plugin 'majutsushi/tagbar'
 " Better markdown integration
-Bundle 'tpope/vim-markdown'
+Plugin 'tpope/vim-markdown'
 " To show indentation
-Bundle 'nathanaelkane/vim-indent-guides'
+Plugin 'nathanaelkane/vim-indent-guides'
 " Opens a file explorer of the current directory
-Bundle 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree'
 " Essential plugin to open files very quickly
-Bundle 'kien/ctrlp.vim'
+Plugin 'kien/ctrlp.vim'
 " Compile C/C++ when saving, avoid useless compilations
-"Bundle 'scrooloose/syntastic'
+"Plugin 'scrooloose/syntastic'
 " Actionscript syntax highlight support
-Bundle 'jeroenbourgois/vim-actionscript'
+Plugin 'jeroenbourgois/vim-actionscript'
 " Easily surround text with 'whatever you want'
-Bundle 'tpope/vim-surround'
+Plugin 'tpope/vim-surround'
 " Stylish status line with colors <3
-Bundle 'bling/vim-airline'
+Plugin 'bling/vim-airline'
 " Plugin to play with git inside of vim (:Gdiff, for example)
-Bundle 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive'
 " <Leader>cc to comment <Leader>cu to uncomment (very useful)
-Bundle 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdcommenter'
 " Automatic closing of quotes, parenthesis, brackets, etc.
-Bundle 'Raimondi/delimitMate'
+Plugin 'Raimondi/delimitMate'
 " Very good snippet engine (requires runtime python)
-Bundle 'SirVer/ultisnips'
+Plugin 'SirVer/ultisnips'
 " A bunch of snippets ultisnips compatible
-Bundle 'honza/vim-snippets'
+Plugin 'honza/vim-snippets'
 " <Leader>be to explore the buffer list, switch-to/delete a buffer
-Bundle 'jlanzarotta/bufexplorer'
+Plugin 'jlanzarotta/bufexplorer'
 " :Ag command to find occurences of a string recursively in a directory
-Bundle 'rking/ag.vim'
+Plugin 'rking/ag.vim'
 " <Leader><Leader>w to easily jump to some part of the visible code
-Bundle 'Lokaltog/vim-easymotion'
+Plugin 'Lokaltog/vim-easymotion'
 " Align stuff
-Bundle 'junegunn/vim-easy-align'
+Plugin 'junegunn/vim-easy-align'
 " Solarized theme, easy to the eye :)
-Bundle 'altercation/vim-colors-solarized'
+Plugin 'altercation/vim-colors-solarized'
 " Hybrid color scheme
-Bundle 'w0ng/vim-hybrid'
+Plugin 'w0ng/vim-hybrid'
 " Base-16 colorschemes, super cool
-Bundle 'chriskempson/base16-vim'
+"Plugin 'chriskempson/base16-vim'
 " Many color schemes
-Bundle 'flazz/vim-colorschemes'
+Plugin 'flazz/vim-colorschemes'
 " Colorful {} [] :: -> etc. Very useful to see the code more clearly
-"Bundle 'oblitum/rainbow'
+"Plugin 'oblitum/rainbow'
 " Add gvim color support to vim (in terminal)
-"Bundle 'vim-scripts/colorsupport.vim'
+"Plugin 'vim-scripts/colorsupport.vim'
 " Nice white theme GitHub inspired
-" Bundle 'ricardovaleriano/vim-github-theme'
+" Plugin 'ricardovaleriano/vim-github-theme'
 
 " Visually select increasingly larger regions of text
-Bundle 'terryma/vim-expand-region'
+Plugin 'terryma/vim-expand-region'
 
 " YAML support
-Bundle 'chase/vim-ansible-yaml'
-Bundle 'ingydotnet/yaml-vim'
+Plugin 'chase/vim-ansible-yaml'
+Plugin 'ingydotnet/yaml-vim'
 
 " Neocomplete Completion with cache (useless if you have YouCompleteMe)
-"Bundle 'Shougo/neocomplete'
-"Bundle 'Shougo/neosnippet'
-"Bundle 'Shougo/neosnippet-snippets'
-
-" PHP/Symfony2
-Bundle 'docteurklein/vim-symfony'
-"Bundle 'mitsuhiko/vim-jinja'
-Bundle 'evidens/vim-twig'
-Bundle 'StanAngeloff/php.vim'
-
-" Better CSS3 syntax highlight
-Bundle 'hail2u/vim-css3-syntax'
+"Plugin 'Shougo/neocomplete'
+"Plugin 'Shougo/neosnippet'
+"Plugin 'Shougo/neosnippet-snippets'
 
 " C/C++ specific
 " Allows to switch between .h and .cpp
-" Bundle "derekwyatt/vim-fswitch"
+Plugin 'derekwyatt/vim-fswitch'
+" Generate methods and functions prototypes from header
+Plugin 'derekwyatt/vim-protodef'
 " Autocomplete C/C++ with a clang compiler
-" Bundle 'Rip-Rip/clang_complete'
+" Plugin 'Rip-Rip/clang_complete'
 " A bunch of modules that interact with each other to optimize clang_complete
-" Bundle 'LucHermitte/vim-clang'
-" Bundle 'LucHermitte/clang_indexer'
+" Plugin 'LucHermitte/vim-clang'
+" Plugin 'LucHermitte/clang_indexer'
 
 " Python & Ddjango specific
-"Bundle 'jmcantrell/vim-virtualenv'
+"Plugin 'jmcantrell/vim-virtualenv'
+"Plugin 'lambdalisue/vim-django-support'
+" Better CSS3 syntax highlight
+"Plugin 'hail2u/vim-css3-syntax'
+
+" Pandoc
+Plugin 'vim-pandoc/vim-pandoc'
+Plugin 'vim-pandoc/vim-pandoc-syntax'
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
+call vundle#end()
 filetype plugin indent on
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -225,7 +226,7 @@ set completeopt-=preview
 "let g:clang_user_options = "-std=c++11"
 "let g:clang_use_library = 1
 
-set conceallevel=2
+set conceallevel=0
 set concealcursor=vin
 let g:tex_conceal=0
 "let g:SuperTabDefaultCompletionType='<c-x><c-u><c-p>'
@@ -266,11 +267,11 @@ set showbreak=↪
 " Show line numbers
 set nu
 " To prevent going further than 80th column
-set colorcolumn=79
+set colorcolumn=80
 " Tabbing related
-set tabstop=4
-set shiftwidth=4
-set sts=4
+set tabstop=2
+set shiftwidth=2
+set sts=2
 set et
 set smartindent
 set cindent
@@ -296,8 +297,12 @@ set scrolloff=5
 set wrap
 set textwidth=79
 " Enable folding for C/C++
-" autocmd FileType c setlocal foldmethod=syntax
-" autocmd FileType cpp setlocal foldmethod=syntax
+autocmd FileType c setlocal foldmethod=syntax
+autocmd FileType cpp setlocal foldmethod=syntax
+map f za
+map F zi
+set foldnestmax=1
+set foldlevel=0
 
 " Git commit
 autocmd Filetype gitcommit setlocal spell textwidth=72
@@ -309,7 +314,8 @@ autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 " put ft=markdown for all .md files
 au BufRead,BufNewFile *.md set filetype=markdown
-Bundle 'lambdalisue/vim-django-support'
+" put ft=muttrc for all .muttrc files
+au BufRead,BufNewFile *.muttrc set filetype=muttrc
 
 " Fixing 'font' keyword highlighted in red in CSS files
 augroup VimCSS3Syntax
@@ -318,10 +324,17 @@ augroup VimCSS3Syntax
     autocmd FileType css setlocal iskeyword+=-
 augroup END
 
+" Disable syntastic warnings on python filse because Django not supported
 autocmd BufNewFile,BufRead *.py let g:syntastic_quiet_messages = { "level": "warnings" }
 
 " Remove unwanted spaces when saving
 autocmd BufWritePre * if &ft != 'mail' | :%s/\s\+$//e | endif
 
-let g:ycm_semantic_triggers = { 'php' : ['->', '::'] }
+" Mails
+autocmd Filetype gitcommit setlocal spell textwidth=71 colorcolumn=72
+autocmd Filetype mail setlocal spell textwidth=71 colorcolumn=72
 
+let g:pandoc#syntax#conceal#use = 0
+
+let g:ycm_global_ycm_extra_conf = '/home/toogy/.ycm_extra_conf.py'
+let g:ycm_confirm_extra_conf = 0
