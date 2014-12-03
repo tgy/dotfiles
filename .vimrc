@@ -12,6 +12,15 @@ Plugin 'gmarik/vundle'
 
 " Plugins
 
+" Replay vim sessions (mainly for EPITA students)
+"Plugin 'chrisbra/Replay'
+
+" Launch any shell command in a dispatched buffer
+Plugin 'tpope/vim-dispatch'
+
+" Text filtering and alignment
+Plugin 'godlygeek/tabular'
+
 " Very powerful completion
 Plugin 'Valloric/YouCompleteMe'
 " Ctags..
@@ -19,7 +28,7 @@ Plugin 'fishman/ctags'
 " Ctags bar
 Plugin 'majutsushi/tagbar'
 " Better markdown integration
-Plugin 'tpope/vim-markdown'
+Plugin 'plasticboy/vim-markdown'
 " To show indentation
 Plugin 'nathanaelkane/vim-indent-guides'
 " Opens a file explorer of the current directory
@@ -28,6 +37,8 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
 " Compile C/C++ when saving, avoid useless compilations
 "Plugin 'scrooloose/syntastic'
+" Enhanced C++ highlighting
+Plugin 'octol/vim-cpp-enhanced-highlight'
 " Actionscript syntax highlight support
 Plugin 'jeroenbourgois/vim-actionscript'
 " Easily surround text with 'whatever you want'
@@ -57,7 +68,7 @@ Plugin 'altercation/vim-colors-solarized'
 " Hybrid color scheme
 Plugin 'w0ng/vim-hybrid'
 " Base-16 colorschemes, super cool
-"Plugin 'chriskempson/base16-vim'
+Plugin 'chriskempson/base16-vim'
 " Many color schemes
 Plugin 'flazz/vim-colorschemes'
 " Colorful {} [] :: -> etc. Very useful to see the code more clearly
@@ -66,6 +77,10 @@ Plugin 'flazz/vim-colorschemes'
 "Plugin 'vim-scripts/colorsupport.vim'
 " Nice white theme GitHub inspired
 " Plugin 'ricardovaleriano/vim-github-theme'
+
+" Coding style
+Plugin 'kana/vim-operator-user'
+Plugin 'rhysd/vim-clang-format'
 
 " Visually select increasingly larger regions of text
 Plugin 'terryma/vim-expand-region'
@@ -91,14 +106,19 @@ Plugin 'derekwyatt/vim-protodef'
 " Plugin 'LucHermitte/clang_indexer'
 
 " Python & Ddjango specific
-"Plugin 'jmcantrell/vim-virtualenv'
-"Plugin 'lambdalisue/vim-django-support'
+Plugin 'jmcantrell/vim-virtualenv'
+Plugin 'lambdalisue/vim-django-support'
+" Better python highlighting
+Plugin 'hdima/python-syntax'
+" Pep8 python indentation
+Plugin 'hynek/vim-python-pep8-indent'
+
 " Better CSS3 syntax highlight
-"Plugin 'hail2u/vim-css3-syntax'
+Plugin 'hail2u/vim-css3-syntax'
 
 " Pandoc
-Plugin 'vim-pandoc/vim-pandoc'
-Plugin 'vim-pandoc/vim-pandoc-syntax'
+"Plugin 'vim-pandoc/vim-pandoc'
+"Plugin 'vim-pandoc/vim-pandoc-syntax'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -114,7 +134,8 @@ filetype plugin indent on
 syntax enable
 set background=dark
 let g:hybrid_use_Xresources = 1
-colorscheme hybrid
+let base16colorspace=256
+colorscheme base16-ocean
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -226,6 +247,10 @@ set completeopt-=preview
 "let g:clang_user_options = "-std=c++11"
 "let g:clang_use_library = 1
 
+
+" Python highlighting
+let python_highlight_all = 1
+
 set conceallevel=0
 set concealcursor=vin
 let g:tex_conceal=0
@@ -269,12 +294,14 @@ set nu
 " To prevent going further than 80th column
 set colorcolumn=80
 " Tabbing related
-set tabstop=2
-set shiftwidth=2
-set sts=2
+set tabstop=8
+set shiftwidth=4
+set sts=4
 set et
 set smartindent
 set cindent
+" Level of indentation for private/public sections in a class (C++)
+set cinoptions+=g0
 " When matching something, cursor jumps between results
 set showmatch
 " Memory buffer
@@ -296,12 +323,14 @@ set scrolloff=5
 " Wrap text to avoid going further than 80 characters
 set wrap
 set textwidth=79
+set formatoptions+=t
 " Enable folding for C/C++
 autocmd FileType c setlocal foldmethod=syntax
 autocmd FileType cpp setlocal foldmethod=syntax
+autocmd FileType python setlocal foldmethod=indent
 map f za
 map F zi
-set foldnestmax=1
+set foldnestmax=2
 set foldlevel=0
 
 " Git commit
@@ -334,7 +363,25 @@ autocmd BufWritePre * if &ft != 'mail' | :%s/\s\+$//e | endif
 autocmd Filetype gitcommit setlocal spell textwidth=71 colorcolumn=72
 autocmd Filetype mail setlocal spell textwidth=71 colorcolumn=72
 
+" Pandoc support settings
 let g:pandoc#syntax#conceal#use = 0
 
+" YCM settings
 let g:ycm_global_ycm_extra_conf = '/home/toogy/.ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf = 0
+
+" Replay settings
+" Replay speed
+let g:replay_speed = 400
+" Allow replay recording
+let g:replay_record = 1
+
+" Align function parameters vertically
+set cino+=(0
+
+" Enable doxygen syntax
+let g:load_doxygen_syntax=1
+
+" C++ highlighting
+let g:cpp_class_scope_highlight = 1
+let g:cpp_experimental_template_highlight = 1
