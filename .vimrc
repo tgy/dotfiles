@@ -1,129 +1,126 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/vundle/
-call vundle#begin()
-
-" let Vundle manage Vundle, required
-Plugin 'gmarik/vundle'
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""
+call plug#begin('~/.vim/plugged')
 
 " Plugins
 
 " Replay vim sessions (mainly for EPITA students)
-"Plugin 'chrisbra/Replay'
+"Plug 'chrisbra/Replay'
+
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
 
 " Launch any shell command in a dispatched buffer
-Plugin 'tpope/vim-dispatch'
+Plug 'tpope/vim-dispatch'
 
 " Text filtering and alignment
-Plugin 'godlygeek/tabular'
+Plug 'godlygeek/tabular'
+
+" Flex & Bison syntax
+Plug 'justinmk/vim-syntax-extra'
 
 " Very powerful completion
-Plugin 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe'
 " Ctags..
-Plugin 'fishman/ctags'
+Plug 'fishman/ctags'
 " Ctags bar
-Plugin 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar'
 " Better markdown integration
-Plugin 'plasticboy/vim-markdown'
+Plug 'plasticboy/vim-markdown'
 " To show indentation
-Plugin 'nathanaelkane/vim-indent-guides'
+Plug 'nathanaelkane/vim-indent-guides'
 " Opens a file explorer of the current directory
-Plugin 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 " Essential plugin to open files very quickly
-Plugin 'kien/ctrlp.vim'
+Plug 'kien/ctrlp.vim'
 " Compile C/C++ when saving, avoid useless compilations
-"Plugin 'scrooloose/syntastic'
+"Plug 'scrooloose/syntastic'
 " Enhanced C++ highlighting
-Plugin 'octol/vim-cpp-enhanced-highlight'
+"Plug 'octol/vim-cpp-enhanced-highlight'
 " Actionscript syntax highlight support
-Plugin 'jeroenbourgois/vim-actionscript'
+"Plug 'jeroenbourgois/vim-actionscript'
 " Easily surround text with 'whatever you want'
-Plugin 'tpope/vim-surround'
+"Plug 'tpope/vim-surround'
 " Stylish status line with colors <3
-Plugin 'bling/vim-airline'
-" Plugin to play with git inside of vim (:Gdiff, for example)
-Plugin 'tpope/vim-fugitive'
+Plug 'bling/vim-airline'
+" Plug to play with git inside of vim (:Gdiff, for example)
+"Plug 'tpope/vim-fugitive'
 " <Leader>cc to comment <Leader>cu to uncomment (very useful)
-Plugin 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdcommenter'
 " Automatic closing of quotes, parenthesis, brackets, etc.
-Plugin 'Raimondi/delimitMate'
+Plug 'Raimondi/delimitMate'
 " Very good snippet engine (requires runtime python)
-Plugin 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips'
 " A bunch of snippets ultisnips compatible
-Plugin 'honza/vim-snippets'
+Plug 'honza/vim-snippets'
 " <Leader>be to explore the buffer list, switch-to/delete a buffer
-Plugin 'jlanzarotta/bufexplorer'
+Plug 'jlanzarotta/bufexplorer'
 " :Ag command to find occurences of a string recursively in a directory
-Plugin 'rking/ag.vim'
+Plug 'rking/ag.vim'
 " <Leader><Leader>w to easily jump to some part of the visible code
-Plugin 'Lokaltog/vim-easymotion'
+"Plug 'Lokaltog/vim-easymotion'
 " Align stuff
-Plugin 'junegunn/vim-easy-align'
+"Plug 'junegunn/vim-easy-align'
 " Solarized theme, easy to the eye :)
-Plugin 'altercation/vim-colors-solarized'
+"Plug 'altercation/vim-colors-solarized'
 " Hybrid color scheme
-Plugin 'w0ng/vim-hybrid'
+Plug 'w0ng/vim-hybrid'
 " Base-16 colorschemes, super cool
-Plugin 'chriskempson/base16-vim'
+Plug 'chriskempson/base16-vim'
 " Many color schemes
-Plugin 'flazz/vim-colorschemes'
+"Plug 'flazz/vim-colorschemes'
 " Colorful {} [] :: -> etc. Very useful to see the code more clearly
-"Plugin 'oblitum/rainbow'
+"Plug 'oblitum/rainbow'
 " Add gvim color support to vim (in terminal)
-"Plugin 'vim-scripts/colorsupport.vim'
+"Plug 'vim-scripts/colorsupport.vim'
 " Nice white theme GitHub inspired
-" Plugin 'ricardovaleriano/vim-github-theme'
+" Plug 'ricardovaleriano/vim-github-theme'
 
 " Coding style
-Plugin 'kana/vim-operator-user'
-Plugin 'rhysd/vim-clang-format'
+Plug 'kana/vim-operator-user'
+Plug 'rhysd/vim-clang-format'
 
 " Visually select increasingly larger regions of text
-Plugin 'terryma/vim-expand-region'
+"Plug 'terryma/vim-expand-region'
 
 " YAML support
-Plugin 'chase/vim-ansible-yaml'
-Plugin 'ingydotnet/yaml-vim'
+"Plug 'chase/vim-ansible-yaml'
+"Plug 'ingydotnet/yaml-vim'
 
 " Neocomplete Completion with cache (useless if you have YouCompleteMe)
-"Plugin 'Shougo/neocomplete'
-"Plugin 'Shougo/neosnippet'
-"Plugin 'Shougo/neosnippet-snippets'
+"Plug 'Shougo/neocomplete'
+"Plug 'Shougo/neosnippet'
+"Plug 'Shougo/neosnippet-snippets'
 
 " C/C++ specific
 " Allows to switch between .h and .cpp
-Plugin 'derekwyatt/vim-fswitch'
+Plug 'derekwyatt/vim-fswitch'
 " Generate methods and functions prototypes from header
-Plugin 'derekwyatt/vim-protodef'
+Plug 'derekwyatt/vim-protodef'
 " Autocomplete C/C++ with a clang compiler
-" Plugin 'Rip-Rip/clang_complete'
+" Plug 'Rip-Rip/clang_complete'
 " A bunch of modules that interact with each other to optimize clang_complete
-" Plugin 'LucHermitte/vim-clang'
-" Plugin 'LucHermitte/clang_indexer'
+" Plug 'LucHermitte/vim-clang'
+" Plug 'LucHermitte/clang_indexer'
 
 " Python & Ddjango specific
-Plugin 'jmcantrell/vim-virtualenv'
-Plugin 'lambdalisue/vim-django-support'
+Plug 'jmcantrell/vim-virtualenv'
+Plug 'lambdalisue/vim-django-support'
 " Better python highlighting
-Plugin 'hdima/python-syntax'
+Plug 'hdima/python-syntax'
 " Pep8 python indentation
-Plugin 'hynek/vim-python-pep8-indent'
+Plug 'hynek/vim-python-pep8-indent'
 
 " Better CSS3 syntax highlight
-Plugin 'hail2u/vim-css3-syntax'
+Plug 'hail2u/vim-css3-syntax'
 
 " Pandoc
-"Plugin 'vim-pandoc/vim-pandoc'
-"Plugin 'vim-pandoc/vim-pandoc-syntax'
-
+"Plug 'vim-pandoc/vim-pandoc'
+"Plug 'vim-pandoc/vim-pandoc-syntax'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
-call vundle#end()
+call plug#end()
+
+set nocompatible              " be iMproved, required
 filetype plugin indent on
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -135,7 +132,7 @@ syntax enable
 set background=dark
 let g:hybrid_use_Xresources = 1
 let base16colorspace=256
-colorscheme base16-ocean
+colorscheme base16-mocha
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -301,7 +298,7 @@ set et
 set smartindent
 set cindent
 " Level of indentation for private/public sections in a class (C++)
-set cinoptions+=g0
+set cinoptions=(0,u0,U0,t0,g0,N-s
 " When matching something, cursor jumps between results
 set showmatch
 " Memory buffer
@@ -330,7 +327,7 @@ autocmd FileType cpp setlocal foldmethod=syntax
 autocmd FileType python setlocal foldmethod=indent
 map f za
 map F zi
-set foldnestmax=2
+set foldnestmax=1
 set foldlevel=0
 
 " Git commit
@@ -343,6 +340,8 @@ autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 " put ft=markdown for all .md files
 au BufRead,BufNewFile *.md set filetype=markdown
+" put ft=aasm for all .aasm files
+au BufRead,BufNewFile *.aasm set filetype=aasm
 " put ft=muttrc for all .muttrc files
 au BufRead,BufNewFile *.muttrc set filetype=muttrc
 
@@ -357,7 +356,7 @@ augroup END
 autocmd BufNewFile,BufRead *.py let g:syntastic_quiet_messages = { "level": "warnings" }
 
 " Remove unwanted spaces when saving
-autocmd BufWritePre * if &ft != 'mail' | :%s/\s\+$//e | endif
+autocmd BufWritePre * if &ft != 'mail' && &ft != 'gitcommit' | :%s/\s\+$//e | endif
 
 " Mails
 autocmd Filetype gitcommit setlocal spell textwidth=71 colorcolumn=72
@@ -369,6 +368,15 @@ let g:pandoc#syntax#conceal#use = 0
 " YCM settings
 let g:ycm_global_ycm_extra_conf = '/home/toogy/.ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf = 0
+" Let YCM read tags from Ctags file
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_use_ultisnips_completer = 1
+" Completion for programming language's keyword"
+let g:ycm_seed_identifiers_with_syntax = 1
+" Completion in comments
+let g:ycm_complete_in_comments = 1
+" Completion in string
+let g:ycm_complete_in_strings = 1
 
 " Replay settings
 " Replay speed
@@ -385,3 +393,10 @@ let g:load_doxygen_syntax=1
 " C++ highlighting
 let g:cpp_class_scope_highlight = 1
 let g:cpp_experimental_template_highlight = 1
+
+" Binding for clang-format
+autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
+
+vnoremap <Leader>rp :s/\<update\>\\|\<select\>\\|\<from\>\\|\<where>\\|\<left join\>\\|\<inner join\>\\|\<group by\>\\|\<order by\>/\r\U&/ge<cr><esc>
+
+let g:limelight_default_coefficient = 0.7
