@@ -26,9 +26,11 @@ exec --no-startup-id nitrogen --restore
 hide_edge_borders both
 focus_follows_mouse no
 workspace_auto_back_and_forth yes
-bindsym $mod+l exec i3lock -t -i /home/toogy/pictures/lock.png -d
+bindsym $mod+l exec i3lock -d -t -i /home/toogy/pictures/wallpapers/lock.png -c 000000
+#bindsym $mod+l exec i3lock -d -t -c 000000
+#bindsym $mod+x exec setxkbmap -layout pl -variant ru_phonetic_dvorak
 
-client.focused #413D66 #413D66 #ffffff
+client.focused #223B54 #223B54 #ffffff
 client.focused_inactive #333333 #5f676a #ffffff
 client.unfocused #333333 #333333 #888888
 client.urgent #2f343a #900000 #ffffff
@@ -42,8 +44,13 @@ bindsym $mod+Return exec termite
 # kill focused window
 bindsym $mod+Escape kill
 
+# scratchpad
+#bindsym $mod+Shift+Return "scratchpad show; move absolute position 0 19 px; resize shrink height 1000px; resize grow height 200px; resize grow width 768px; border none"
+bindsym $mod+Shift+Return "scratchpad show"
+
+
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run -fn 'terminus-12'
+bindsym $mod+d exec dmenu_run -fn 'terminus-9'
 
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
@@ -103,28 +110,28 @@ bindsym $mod+a focus parent
 
 
 # switch to workspace
-bindsym $mod+1 workspace 1:surf
-bindsym $mod+2 workspace 2:code
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
 bindsym $mod+3 workspace 3
 bindsym $mod+4 workspace 4
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8:mail
-bindsym $mod+9 workspace 9:♪
-bindsym $mod+0 workspace 10:irc
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace number 1
-bindsym $mod+Shift+2 move container to workspace number 2
-bindsym $mod+Shift+3 move container to workspace number 3
-bindsym $mod+Shift+4 move container to workspace number 4
-bindsym $mod+Shift+5 move container to workspace number 5
-bindsym $mod+Shift+6 move container to workspace number 6
-bindsym $mod+Shift+7 move container to workspace number 7
-bindsym $mod+Shift+8 move container to workspace number 8
-bindsym $mod+Shift+9 move container to workspace number 9
-bindsym $mod+Shift+0 move container to workspace number 10
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -163,7 +170,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
   strip_workspace_numbers yes
-  status_command i3status
+  status_command /home/toogy/.i3status.sh
   position top
 
   colors {
@@ -171,9 +178,13 @@ bar {
     statusline #ffffff
     separator #333333
 
-    focused_workspace  #413D66 #413D66 #ffffff
-    active_workspace   #413D66 #413D66 #ffffff
+    focused_workspace  #223B54 #223B54 #ffffff
+    active_workspace   #223B54 #223B54 #ffffff
     inactive_workspace #2B2B2B #2B2B2B #888888
-    urgent_workspace   #12f343 #413D66 #ffffff
+    urgent_workspace   #12f343 #223B54 #ffffff
   }
 }
+
+for_window [class="^.*"] border pixel 0
+
+#for_window [class="Wine"] move to workspace 5
