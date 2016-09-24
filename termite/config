@@ -17,6 +17,7 @@ clickable_url = true
 #font = Ubuntu Mono derivative Powerline 12
 font = PragmataPro 12
 #font = Fantasque Sans Mono 11
+#font = Consolas 11
 scrollback_lines = 10000
 search_wrap = true
 border_width = 0
@@ -30,10 +31,10 @@ transparency = 0.0
 pseudo_transparency = false
 
 # "system", "on" or "off"
-cursor_blink = off
+cursor_blink = on
 
 # "block", "underline" or "ibeam"
-cursor_shape = ibeam
+cursor_shape = block
 
 # $BROWSER is used by default
 browser = firefox
@@ -48,9 +49,9 @@ browser = firefox
 
 foreground = #d0d0d0
 foreground_bold = #d0d0d0
-# background = #3a3a3a
-background = #262626
+background = #3a3a3a
 cursor = #d0d0d0
+cursor = #a1d490
 
 color0 = #4e4e4e
 color1 = #d68787
