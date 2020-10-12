@@ -1,53 +1,44 @@
 call plug#begin('~/.local/share/nvim/plugged')
-
-Plug 'https://github.com/tpope/vim-dispatch.git'
-Plug 'radenling/vim-dispatch-neovim'
-
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-
-" language syntax
-Plug 'sheerun/vim-polyglot'
-Plug 'tshirtman/vim-cython'
-" moving around
-Plug 'scrooloose/nerdtree'
-Plug 'jlanzarotta/bufexplorer'
-Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
-Plug 'rking/ag.vim'
-Plug 'derekwyatt/vim-fswitch'
-Plug 'derekwyatt/vim-protodef'
-Plug 'jpalardy/vim-slime'
-" git
-Plug 'tpope/vim-fugitive'
-" misc
+" important plugins
+Plug 'neomake/neomake'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" misc plugins
+Plug 'tmhedberg/SimpylFold'
 Plug 'scrooloose/nerdcommenter'
 Plug 'embear/vim-localvimrc'
 Plug 'junegunn/goyo.vim'
-" auto formatting
+" moving around
+Plug 'scrooloose/nerdtree'
+Plug 'jlanzarotta/bufexplorer'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'jpalardy/vim-slime'
+Plug 'easymotion/vim-easymotion'
+Plug 'rking/ag.vim'
+" snippets and languages
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'sheerun/vim-polyglot'
+" c++
+Plug 'derekwyatt/vim-fswitch'
+Plug 'derekwyatt/vim-protodef'
 Plug 'kana/vim-operator-user'
 Plug 'rhysd/vim-clang-format'
-"Plug 'mindriot101/vim-yapf'
-Plug 'psf/black'
-Plug 'tgy/vim-npdocstring'
+" python
+Plug 'psf/black', { 'branch': 'stable' }
+Plug 'mindriot101/vim-yapf'
+Plug 'fisadev/vim-isort'
 Plug 'hynek/vim-python-pep8-indent'
-" colors
-Plug 'https://github.com/lifepillar/vim-solarized8.git'
-Plug 'https://github.com/altercation/vim-colors-solarized.git'
-Plug 'neomake/neomake'
-" autocompletion
-Plug 'davidhalter/jedi-vim'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-jedi', {'for': 'python'}
-" folding for Python
-Plug 'tmhedberg/SimpylFold'
+Plug 'tell-k/vim-autoflake'
+Plug 'tgy/vim-npdocstring'
 
-" Plug 'jiangmiao/auto-pairs'
+Plug 'cakebaker/scss-syntax.vim'
 
-" latex
-Plug 'lervag/vimtex'
-
+"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"Plug 'vim-latex/vim-latex'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
-
+"Plug 'vim-syntastic/syntastic'
+"Plug 'davidhalter/jedi-vim'
+"Plug 'zchee/deoplete-jedi', {'for': 'python'}
 
 call plug#end()
 
@@ -110,7 +101,7 @@ set smartindent
 set smarttab
 set cindent
 " Level of indentation for private/public sections in a class (C++)
-"set cinoptions=(0,u0,U0,t0,g0,N-s
+set cinoptions=(0,u0,U0,t0,g0,N-s
 " When matching something, cursor jumps between results
 set showmatch
 " Memory buffer
@@ -134,15 +125,18 @@ set formatoptions+=t
 set completeopt-=preview
 "set completeopt+=noinsert
 
+
 " Enable folding for C/C++
 autocmd FileType c setlocal foldmethod=syntax
 autocmd FileType cpp setlocal foldmethod=syntax
-"autocmd FileType python setlocal foldmethod=indent
+autocmd FileType python setlocal foldmethod=indent
 " Python syntax folding
-let g:SimpylFold_docstring_preview = 1
+let g:SimpylFold_docstring_preview = 0
+let g:SimpylFold_fold_docstring = 0
+let g:SimpylFold_fold_import = 0
 map f za
 map F zi
-set foldnestmax=0
+set foldnestmax=2
 set foldlevel=0
 
 au BufRead,BufNewFile *.md set filetype=markdown
@@ -160,7 +154,8 @@ autocmd Filetype gitcommit setlocal spell textwidth=71 colorcolumn=72
 autocmd Filetype mail setlocal spell textwidth=71 colorcolumn=72
 
 " Binding for clang-format
-autocmd FileType c,cpp,objc map <buffer><Leader>y <Plug>(operator-clang-format)
+autocmd FileType cpp nnoremap <leader>y :ClangFormat<cr>
+"autocmd FileType c,cpp,objc map <buffer><Leader>y <Plug>(operator-clang-format)
 autocmd FileType python,cython,pyrex,c,cpp setlocal shiftwidth=4
 autocmd FileType python,cython,pyrex,c,cpp setlocal sts=4
 autocmd FileType python,cython,pyrex,c,cpp setlocal tabstop=4
@@ -168,12 +163,6 @@ autocmd FileType python,cython,pyrex,c,cpp setlocal tabstop=4
 " Clipboard
 noremap <Leader>c :%y+<CR>
 
-" Format all file using yapf
-"nnoremap <leader>y :call Yapf()<cr>
-nnoremap <leader>y :py3 Black()<cr>
-let g:black_linelength = 79
-"nnoremap <leader>x :call Npdocstring()<cr>
-"autocmd FileType python nnoremap <leader>x :0,$!npdocstring<Cr><C-o>
 
 "let g:python3_host_prog = '/usr/bin/python'
 
@@ -185,8 +174,6 @@ let NERDTreeIgnore = [ '\.o$','\.app$', '__pycache__', '\.pyc$', '\.acn$', '\.ac
 nmap <silent> <Leader>os :FSHere<cr>
 nmap <silent> <Leader>or :FSRight<cr>
 nmap <silent> <Leader>oR :FSSplitRight<cr>
-
-let g:syntastic_python_checkers = ['flake8']
 
 " Jedi
 let g:jedi#use_tabs_not_buffers = 0
@@ -212,19 +199,73 @@ let g:localvimrc_persistent = 2
 let g:neomake_python_enabled_makers = ['pep8', 'pylint']
 call neomake#configure#automake('nrwi', 500)
 let g:neomake_highlight_columns = 0
-
 let g:neomake_cpp_enabled_makers = ['clang++']
 
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|thirdparty'
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|thirdparty\|doc\|.*\.egg-info\|__pycache__'
 
 map <Leader>m :Make<CR>
 inoremap hh <Esc>
 inoremap <Esc> <Nop>
 
+let g:vim_isort_map = ''
+"nnoremap <leader>h :Isort()<cr>
+
 set timeoutlen=1000 ttimeoutlen=0
 
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+"let g:UltiSnipsExpandTrigger="<tab>"
+"let g:UltiSnipsJumpForwardTrigger="<c-b>"
+"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 let g:python_highlight_all = 1
+
+autocmd FileType python nnoremap <leader>x :call Npdocstring()<cr>
+"autocmd FileType python nnoremap <leader>y :Isort<cr> <bar> :Yapf<cr>
+autocmd FileType python nnoremap <leader>y :Isort<cr> <bar> :py3 Black()<cr>
+"autocmd FileType python nnoremap <leader>y :py3 Black()<cr>
+let g:black_linelength = 79
+
+
+let g:deoplete#sources#clang#libclang_path = "/usr/local/opt/llvm/lib/libclang.dylib"
+let g:deoplete#sources#clang#clang_header = "/usr/local/opt/llvm/lib/clang"
+let g:deoplete#enable_at_startup = 1
+
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+"let g:syntastic_python_flake8_args = "--ignore=E402,E501,E221"
+"let g:syntastic_python_checkers=['flake8']
+"let g:syntastic_enable_highlighting = 0
+
+"let g:autoflake_imports="django,requests,urllib3"
+"let g:autoflake_remove_all_unused_imports=1
+"let g:autoflake_disable_show_diff=1
+
+
+" BEGIN cloc.nvim settings
+" Give more space for displaying messages.
+" set cmdheight=2
+
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+"set signcolumn=yes
+nmap <leader>r <Plug>(coc-rename)
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+" END cloc.nvim settings
+
+let g:clang_format#detect_style_file = 1
+
+
+let g:vim_isort_config_overrides = {
+  \ 'include_trailing_comma': 1, 'multi_line_output': 3,
+  \ 'force_grid_wrap': 0, 'use_parentheses': 1, 'line_length': 79}

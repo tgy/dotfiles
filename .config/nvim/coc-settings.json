@@ -1,0 +1,16 @@
+{
+    "clangd.enabled": true,
+    "clangd.path": "/usr/local/opt/llvm/bin/clangd",
+    "clangd.arguments": [
+        "-log=verbose",
+        "-pretty",
+        "-background-index",
+        "-index",
+        "-j=4",
+        "--clang-tidy",
+        "--clang-tidy-checks=misc-unused-parameters, modernize-loop-convert"
+    ],
+    "python.linting.pydocstyleEnabled": false,
+    "python.linting.pydocstyleArgs": ["--convention=numpy"],
+    "python.pythonPath": "python3"
+}
