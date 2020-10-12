@@ -219,9 +219,7 @@ set timeoutlen=1000 ttimeoutlen=0
 let g:python_highlight_all = 1
 
 autocmd FileType python nnoremap <leader>x :call Npdocstring()<cr>
-"autocmd FileType python nnoremap <leader>y :Isort<cr> <bar> :Yapf<cr>
 autocmd FileType python nnoremap <leader>y :Isort<cr> <bar> :py3 Black()<cr>
-"autocmd FileType python nnoremap <leader>y :py3 Black()<cr>
 let g:black_linelength = 79
 
 
