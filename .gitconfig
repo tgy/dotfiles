@@ -1,0 +1,27 @@
+[url "git@github.com:"]
+    insteadOf = https://github.com
+[user]
+	name = Valentin Iovene
+	email = val@too.gy
+[core]
+	pager = delta
+[delta]
+    syntax-theme = base16
+    light = true
+	features = line-numbers decorations
+	whitespace-error-style = 22 reverse
+[interactive]
+	diffFilter = delta --color-only --width 250
+[alias]
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+[credential]
+	helper = store
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[push]
+	default = current
+[init]
+	defaultBranch = main
